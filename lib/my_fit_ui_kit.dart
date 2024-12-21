@@ -1,5 +1,9 @@
 
 
+
+
+export 'package:my_fit_ui_kit/models/card_type.dart';
+
 //abstract class
 import 'package:my_fit_ui_kit/models/index.dart';
 import 'package:my_fit_ui_kit/utils/index_util.dart';
