@@ -14,7 +14,7 @@ class FitTextStyle{
   TextStyle get title {
     return _baseTextStyle.copyWith(
         fontSize: 32,
-        fontFamily: FontFamilyType.bebas_neue.name
+        fontFamily: FontFamilyType.bebas_neue.name,
     );
   }
 
@@ -36,6 +36,7 @@ class FitTextStyle{
 
   /// BASE
    final TextStyle _baseTextStyle = TextStyle(
+     height: 0,
     color: UiColor().textColor,
     fontWeight: FontWeight.normal,
   );
