@@ -7,14 +7,14 @@ class AppThere {
           labelStyle: TextStyle(color: UiColor().card),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: UiColor().card),
-            borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.circular(10.0),
           ),
           border: OutlineInputBorder(
             borderSide: BorderSide(color: UiColor().card),
-            borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.circular(10.0),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.circular(10.0),
             borderSide: BorderSide(color: UiColor().card),
           ),
           fillColor: UiColor().card,
