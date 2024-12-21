@@ -1,6 +1,6 @@
 enum ButtonType {
-  dark,
-  light,
+  enable,
+  disable,
 }
 
 class ButtonModel {
@@ -11,6 +11,6 @@ class ButtonModel {
   ButtonModel({
     required this.label,
     required this.onTap,
-    this.type = ButtonType.dark,
+    this.type = ButtonType.enable,
   });
 }

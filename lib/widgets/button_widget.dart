@@ -1,13 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:my_fit_ui_kit/models/button_model.dart';
+import 'package:my_fit_ui_kit/utils/text_style.dart';
 import 'package:my_fit_ui_kit/utils/ui_color.dart';
 
 class UiButton {
   Widget formButton(ButtonModel buttonModel) =>
-      buttonModel.type == ButtonType.dark
-          ? _DarkButton(buttonModel)
-          : _LightButton(buttonModel);
+      buttonModel.type == ButtonType.enable
+          ? _EnableButton(buttonModel)
+          : _DisableButton(buttonModel);
 
   Widget goBackButton({required Function() onTap}) => _GoBackButton(onTap);
 
@@ -17,7 +17,12 @@ class UiButton {
     required IconData icon,
     required Function() onTap,
   }) =>
-      _SmallStandardButton(onTap: onTap, icon: icon,iconSize: iconSize, buttonPadding: buttonPadding,);
+      _SmallStandardButton(
+        onTap: onTap,
+        icon: icon,
+        iconSize: iconSize,
+        buttonPadding: buttonPadding,
+      );
 }
 
 class _GoBackButton extends StatelessWidget {
@@ -90,40 +95,16 @@ class _SmallStandardButton extends StatelessWidget {
   }
 }
 
-class _DarkButton extends StatelessWidget {
+class _EnableButton extends StatelessWidget {
   final ButtonModel buttonModel;
 
-  const _DarkButton(this.buttonModel, {Key? key}) : super(key: key);
+  const _EnableButton(this.buttonModel);
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: UiColor().backgroundButton,
+      color: UiColor().primary,
       borderRadius: BorderRadius.circular(100),
-      child: InkWell(
-        onTap: () => buttonModel.onTap(),
-        child: Container(
-          height: 42,
-          alignment: Alignment.center,
-          child: Text(buttonModel.label),
-        ),
-      ),
-    );
-  }
-}
-
-class _LightButton extends StatelessWidget {
-  final ButtonModel buttonModel;
-
-  const _LightButton(this.buttonModel, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(26),
-        border: Border.all(color: UiColor().backgroundButton),
-      ),
       child: InkWell(
         onTap: () => buttonModel.onTap(),
         child: Container(
@@ -131,9 +112,36 @@ class _LightButton extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             buttonModel.label,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
+            style: FitTextStyle().text.copyWith(
+                  color: UiColor().backgroundButton,
+                ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DisableButton extends StatelessWidget {
+  final ButtonModel buttonModel;
+
+  const _DisableButton(this.buttonModel);
+
+  @override
+  Widget build(BuildContext context) {
+    return Opacity(
+      opacity: 0.5,
+      child: Container(
+        decoration: BoxDecoration(
+          color: UiColor().primary,
+          borderRadius: BorderRadius.circular(26),
+        ),
+        child: Container(
+          height: 42,
+          alignment: Alignment.center,
+          child: Text(
+            "label",
+            style: FitTextStyle().text.copyWith(
               color: UiColor().backgroundButton,
             ),
           ),
