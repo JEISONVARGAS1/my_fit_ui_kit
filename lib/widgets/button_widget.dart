@@ -28,7 +28,7 @@ class UiButton {
 class _GoBackButton extends StatelessWidget {
   final Function() onTap;
 
-  const _GoBackButton(this.onTap, {super.key});
+  const _GoBackButton(this.onTap);
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,6 @@ class _SmallStandardButton extends StatelessWidget {
   final double buttonPadding;
 
   const _SmallStandardButton({
-    super.key,
     required this.icon,
     required this.onTap,
     required this.iconSize,
