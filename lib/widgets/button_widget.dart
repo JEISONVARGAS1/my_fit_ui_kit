@@ -105,6 +105,7 @@ class _EnableButton extends StatelessWidget {
       color: UiColor().primary,
       borderRadius: BorderRadius.circular(100),
       child: InkWell(
+      borderRadius: BorderRadius.circular(100),
         onTap: () => buttonModel.onTap(),
         child: Container(
           height: 42,
