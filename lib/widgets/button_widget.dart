@@ -139,7 +139,7 @@ class _DisableButton extends StatelessWidget {
           height: 42,
           alignment: Alignment.center,
           child: Text(
-            "label",
+            buttonModel.label,
             style: FitTextStyle().text.copyWith(
               color: UiColor().backgroundButton,
             ),
