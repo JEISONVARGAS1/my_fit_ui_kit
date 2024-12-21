@@ -7,9 +7,9 @@ class UiCard {
   Widget simpleCard({
     required String title,
     required String image,
-    required CartType cartType,
     required String description,
     TextStyle? descriptionStyle,
+    CartType cartType = CartType.gray,
   }) =>
       _CardWidget(
         title: title,
