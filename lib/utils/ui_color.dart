@@ -8,5 +8,5 @@ class UiColor {
   Color backgroundButton = const Color(0xFF000000);
 
   //my colors
-  Color textColor = const Color(0xFF000000);
+  Color textColor = const Color(0xFFFFFFFF);
 }
