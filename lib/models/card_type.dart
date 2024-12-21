@@ -1,0 +1,1 @@
+enum CartType{ green, gray }
