@@ -11,10 +11,15 @@ class UiButton {
 
   Widget goBackButton({required Function() onTap}) => _GoBackButton(onTap);
 
-  Widget smallButton({required Function() onTap, required IconData icon}) =>
+  Widget smallButton({
+    required String label,
+    required IconData icon,
+    required Function() onTap,
+  }) =>
       _SmallButton(
         onTap: onTap,
         icon: icon,
+        label: label,
       );
 
   Widget smallStandardButton({
@@ -63,31 +68,39 @@ class _GoBackButton extends StatelessWidget {
 }
 
 class _SmallButton extends StatelessWidget {
+  final String label;
   final IconData icon;
   final Function() onTap;
 
   const _SmallButton({
     required this.onTap,
     required this.icon,
+    required this.label,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.circular(10),
-      color: UiColor().card,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(10),
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Icon(
-            icon,
-            size: 40,
-            color: UiColor().primary,
+    return Column(
+      children: [
+        Material(
+          borderRadius: BorderRadius.circular(10),
+          color: UiColor().card,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(10),
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Icon(
+                icon,
+                size: 40,
+                color: UiColor().primary,
+              ),
+            ),
           ),
         ),
-      ),
+        const SizedBox(height: 10),
+        Text(label, style: FitTextStyle().text)
+      ],
     );
   }
 }
