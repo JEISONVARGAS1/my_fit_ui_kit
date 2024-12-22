@@ -89,7 +89,7 @@ class _SmallButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             onTap: onTap,
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(17.0),
               child: Icon(
                 icon,
                 size: 40,
