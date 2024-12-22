@@ -5,6 +5,7 @@ import 'package:my_fit_ui_kit/models/card_type.dart';
 
 class UiCard {
   Widget simpleCard({
+    double space = 0.02,
     required String title,
     required String image,
     required String description,
@@ -14,6 +15,7 @@ class UiCard {
       _CardWidget(
         title: title,
         image: image,
+        space: space,
         cartType: cartType,
         description: description,
         descriptionStyle: descriptionStyle,
@@ -23,11 +25,13 @@ class UiCard {
 class _CardWidget extends StatelessWidget {
   final String title;
   final String image;
+  final double space;
   final CartType cartType;
   final String description;
   final TextStyle? descriptionStyle;
 
   const _CardWidget({
+    required this.space,
     required this.title,
     required this.image,
     this.descriptionStyle,
@@ -64,7 +68,7 @@ class _CardWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  SizedBox(height: MediaQuery.of(context).size.height * space),
                   Text(
                     description,
                     style: descriptionStyle ??
