@@ -49,7 +49,7 @@ class _GoBackButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(4),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
