@@ -11,6 +11,12 @@ class UiButton {
 
   Widget goBackButton({required Function() onTap}) => _GoBackButton(onTap);
 
+  Widget smallButton({required Function() onTap, required IconData icon}) =>
+      _SmallButton(
+        onTap: onTap,
+        icon: icon,
+      );
+
   Widget smallStandardButton({
     double iconSize = 17,
     double buttonPadding = 8,
@@ -51,6 +57,36 @@ class _GoBackButton extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class _SmallButton extends StatelessWidget {
+  final IconData icon;
+  final Function() onTap;
+
+  const _SmallButton({
+    required this.onTap,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      borderRadius: BorderRadius.circular(10),
+      color: UiColor().card,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(10),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Icon(
+            icon,
+            size: 40,
+            color: UiColor().primary,
+          ),
+        ),
       ),
     );
   }
@@ -105,7 +141,7 @@ class _EnableButton extends StatelessWidget {
       color: UiColor().primary,
       borderRadius: BorderRadius.circular(100),
       child: InkWell(
-      borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(100),
         onTap: () => buttonModel.onTap(),
         child: Container(
           height: 42,
@@ -142,8 +178,8 @@ class _DisableButton extends StatelessWidget {
           child: Text(
             buttonModel.label,
             style: FitTextStyle().text.copyWith(
-              color: UiColor().backgroundButton,
-            ),
+                  color: UiColor().backgroundButton,
+                ),
           ),
         ),
       ),
