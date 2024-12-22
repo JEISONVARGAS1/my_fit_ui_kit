@@ -8,6 +8,7 @@ class UiCard {
     double space = 0.02,
     required String title,
     required String image,
+    double imageSize = 130,
     required String description,
     TextStyle? descriptionStyle,
     CartType cartType = CartType.gray,
@@ -17,6 +18,7 @@ class UiCard {
         image: image,
         space: space,
         cartType: cartType,
+        imageSize: imageSize,
         description: description,
         descriptionStyle: descriptionStyle,
       );
@@ -26,6 +28,7 @@ class _CardWidget extends StatelessWidget {
   final String title;
   final String image;
   final double space;
+  final double imageSize;
   final CartType cartType;
   final String description;
   final TextStyle? descriptionStyle;
@@ -36,6 +39,7 @@ class _CardWidget extends StatelessWidget {
     required this.image,
     this.descriptionStyle,
     required this.cartType,
+    required this.imageSize,
     required this.description,
   });
 
@@ -90,7 +94,7 @@ class _CardWidget extends StatelessWidget {
             ),
             Positioned(
               right: 0,
-              child: Image(image: AssetImage(image), height: 130),
+              child: Image(image: AssetImage(image), height: imageSize),
             )
           ],
         ),
