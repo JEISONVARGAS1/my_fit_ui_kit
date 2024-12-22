@@ -9,6 +9,7 @@ class UiCard {
     required String title,
     required String image,
     double imageSize = 130,
+    required Function() onTap,
     required String description,
     TextStyle? descriptionStyle,
     CartType cartType = CartType.gray,
@@ -17,6 +18,7 @@ class UiCard {
         title: title,
         image: image,
         space: space,
+        onTap: onTap,
         cartType: cartType,
         imageSize: imageSize,
         description: description,
@@ -29,12 +31,14 @@ class _CardWidget extends StatelessWidget {
   final String image;
   final double space;
   final double imageSize;
+  final Function() onTap;
   final CartType cartType;
   final String description;
   final TextStyle? descriptionStyle;
 
   const _CardWidget({
     required this.space,
+    required this.onTap,
     required this.title,
     required this.image,
     this.descriptionStyle,
@@ -49,6 +53,8 @@ class _CardWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
       color: cartType == CartType.green ? UiColor().primary : UiColor().card,
       child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        onTap: onTap,
         child: Stack(
           children: [
             Padding(
