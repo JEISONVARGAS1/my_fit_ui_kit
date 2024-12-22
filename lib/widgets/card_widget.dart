@@ -24,6 +24,9 @@ class UiCard {
         description: description,
         descriptionStyle: descriptionStyle,
       );
+
+  Widget detailCard({required String label, required String value}) =>
+      _DetailCard(label: label, value: value);
 }
 
 class _CardWidget extends StatelessWidget {
@@ -104,6 +107,31 @@ class _CardWidget extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _DetailCard extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const _DetailCard({required this.value, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(22),
+      decoration: BoxDecoration(
+        color: UiColor().card,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(label, style: FitTextStyle().title),
+          Text(value, style: FitTextStyle().title),
+        ],
       ),
     );
   }
