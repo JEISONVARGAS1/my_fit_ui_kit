@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_fit_ui_kit/models/button_model.dart';
-import 'package:my_fit_ui_kit/utils/text_style.dart';
 import 'package:my_fit_ui_kit/utils/ui_color.dart';
+import 'package:my_fit_ui_kit/utils/text_style.dart';
+import 'package:my_fit_ui_kit/models/button_model.dart';
 
 class UiButton {
   Widget formButton(ButtonModel buttonModel) =>
@@ -9,7 +9,7 @@ class UiButton {
           ? _EnableButton(buttonModel)
           : _DisableButton(buttonModel);
 
-  Widget goBackButton({required Function() onTap}) => _GoBackButton(onTap);
+  Widget goBackButton({required Function() onTap, bool isDark = false}) => _GoBackButton(onTap, isDark);
 
   Widget smallButton({
     required String label,
@@ -37,9 +37,10 @@ class UiButton {
 }
 
 class _GoBackButton extends StatelessWidget {
+  final bool isDark;
   final Function() onTap;
 
-  const _GoBackButton(this.onTap);
+  const _GoBackButton(this.onTap, this.isDark);
 
   @override
   Widget build(BuildContext context) {
