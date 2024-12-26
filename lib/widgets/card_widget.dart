@@ -27,6 +27,19 @@ class UiCard {
 
   Widget detailCard({required String label, required String value}) =>
       _DetailCard(label: label, value: value);
+
+  Widget productCard({
+    required String label,
+    required Function() onTap,
+    required String firstValue,
+    required String secondValue,
+  }) =>
+      _ProductCard(
+        onTap: onTap,
+        label: label,
+        firstValue: firstValue,
+        secondValue: secondValue,
+      );
 }
 
 class _CardWidget extends StatelessWidget {
@@ -132,6 +145,48 @@ class _DetailCard extends StatelessWidget {
           Text(label, style: FitTextStyle().title),
           Text(value, style: FitTextStyle().title),
         ],
+      ),
+    );
+  }
+}
+
+class _ProductCard extends StatelessWidget {
+  final String label;
+  final Function() onTap;
+  final String firstValue;
+  final String secondValue;
+
+  const _ProductCard({
+    required this.label,
+    required this.onTap,
+    required this.firstValue,
+    required this.secondValue,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: UiColor().card,
+      borderRadius: BorderRadius.circular(20),
+      child: InkWell(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(label, style: FitTextStyle().titleXL),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(firstValue, style: FitTextStyle().text),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                  Text(secondValue, style: FitTextStyle().text),
+                ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
