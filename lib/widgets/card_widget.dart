@@ -169,6 +169,7 @@ class _ProductCard extends StatelessWidget {
       color: UiColor().card,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
+      borderRadius: BorderRadius.circular(20),
         onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(15),
