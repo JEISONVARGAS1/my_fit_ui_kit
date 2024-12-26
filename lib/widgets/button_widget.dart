@@ -56,7 +56,7 @@ class _GoBackButton extends StatelessWidget {
               padding: const EdgeInsets.only(right: 1.5),
               child: Icon(
                 Icons.arrow_back_ios_new_sharp,
-                color: UiColor().backgroundButton,
+                color: isDark ? UiColor().backgroundButton : UiColor().white,
                 size: 17,
               ),
             ),
