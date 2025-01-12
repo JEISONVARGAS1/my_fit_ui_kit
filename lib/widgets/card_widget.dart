@@ -100,7 +100,7 @@ class _CardWidget extends StatelessWidget {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * space),
                   Padding(
-                    padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
+                    padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.1),
                     child: Text(
                       description,
                       style: descriptionStyle ??
