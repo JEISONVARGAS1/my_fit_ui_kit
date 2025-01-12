@@ -99,21 +99,24 @@ class _CardWidget extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * space),
-                  Text(
-                    description,
-                    style: descriptionStyle ??
-                        FitTextStyle().text.copyWith(
-                          color: cartType == CartType.green
-                              ? UiColor().backgroundButton
-                              : UiColor().textColor,
-                          shadows: [
-                            const Shadow(
-                              blurRadius: 5.0,
-                              offset: Offset(2, 2),
-                              color: Colors.black26,
-                            ),
-                          ],
-                        ),
+                  Padding(
+                    padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
+                    child: Text(
+                      description,
+                      style: descriptionStyle ??
+                          FitTextStyle().text.copyWith(
+                            color: cartType == CartType.green
+                                ? UiColor().backgroundButton
+                                : UiColor().textColor,
+                            shadows: [
+                              const Shadow(
+                                blurRadius: 5.0,
+                                offset: Offset(2, 2),
+                                color: Colors.black26,
+                              ),
+                            ],
+                          ),
+                    ),
                   ),
                 ],
               ),
