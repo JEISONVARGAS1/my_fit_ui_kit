@@ -73,6 +73,10 @@ class _CardWidget extends StatelessWidget {
         onTap: onTap,
         child: Stack(
           children: [
+            Positioned(
+              right: 0,
+              child: Image(image: AssetImage(image), height: imageSize),
+            ),
             Padding(
               padding: const EdgeInsets.all(15),
               child: Column(
@@ -114,10 +118,6 @@ class _CardWidget extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
-              right: 0,
-              child: Image(image: AssetImage(image), height: imageSize),
-            )
           ],
         ),
       ),
@@ -169,7 +169,7 @@ class _ProductCard extends StatelessWidget {
       color: UiColor().card,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
-      borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20),
         onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(15),
