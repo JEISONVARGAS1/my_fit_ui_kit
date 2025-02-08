@@ -77,7 +77,9 @@ class _CardWidget extends StatelessWidget {
               right: 0,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.3,
-                child: Image(image: AssetImage(image), height: imageSize),
+                child: image.isNotEmpty
+                    ? Image(image: AssetImage(image), height: imageSize)
+                    : const Center(child: CircularProgressIndicator()),
               ),
             ),
             Padding(
@@ -103,7 +105,8 @@ class _CardWidget extends StatelessWidget {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * space),
                   Padding(
-                    padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.23),
+                    padding: EdgeInsets.only(
+                        right: MediaQuery.of(context).size.width * 0.23),
                     child: Text(
                       description,
                       style: descriptionStyle ??
