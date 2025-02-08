@@ -75,10 +75,13 @@ class _CardWidget extends StatelessWidget {
           children: [
             Positioned(
               right: 0,
-              child: Image(image: AssetImage(image), height: imageSize),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.3,
+                child: Image(image: AssetImage(image), height: imageSize),
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.all(15),
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
