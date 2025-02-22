@@ -18,13 +18,13 @@ class ShowCustomDialog {
               Text(
                 title,
                 textAlign: TextAlign.center,
-                style: Util().cafeTextStyle.title,
+                style: Util().textStyle.title,
               ),
               const SizedBox(height: 20),
               Text(
                 description,
                 textAlign: TextAlign.center,
-                style: Util().cafeTextStyle.text,
+                style: Util().textStyle.text,
               ),
               Visibility(
                 visible: body != null,
