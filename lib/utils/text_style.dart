@@ -25,6 +25,13 @@ class FitTextStyle{
     );
   }
 
+  TextStyle get subTitle {
+    return _baseTextStyle.copyWith(
+        fontSize: 25,
+        fontFamily: FontFamilyType.bebas_neue.name,
+    );
+  }
+
   TextStyle get text {
     return _baseTextStyle.copyWith(
         fontSize: 14,
