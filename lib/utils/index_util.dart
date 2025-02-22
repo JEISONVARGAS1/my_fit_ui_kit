@@ -6,6 +6,6 @@ import 'package:my_fit_ui_kit/utils/show_custom_dialog.dart';
 class Util {
   UiColor color = UiColor();
   AppThere appThere = AppThere();
-  FitTextStyle cafeTextStyle = FitTextStyle();
+  FitTextStyle textStyle = FitTextStyle();
   ShowCustomDialog showCustomDialog = ShowCustomDialog();
 }
