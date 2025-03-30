@@ -128,7 +128,7 @@ class _SmallStandardButton extends StatelessWidget {
         onTap: onTap,
         customBorder: const CircleBorder(),
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(10),
           child: Icon(icon, color: UiColor().primary, size: iconSize),
         ),
       ),
