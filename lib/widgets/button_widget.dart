@@ -9,7 +9,8 @@ class UiButton {
           ? _EnableButton(buttonModel)
           : _DisableButton(buttonModel);
 
-  Widget goBackButton({required Function() onTap, bool isDark = false}) => _GoBackButton(onTap, isDark);
+  Widget goBackButton({required Function() onTap, bool isDark = false}) =>
+      _GoBackButton(onTap, isDark);
 
   Widget smallButton({
     required String label,
@@ -120,24 +121,15 @@ class _SmallStandardButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            padding: EdgeInsets.all(buttonPadding),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: UiColor().backgroundButton,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(right: 1.5),
-              child: Icon(icon, color: UiColor().primary, size: iconSize),
-            ),
-          )
-        ],
+    return Material(
+      shape: const CircleBorder(),
+      color: UiColor().backgroundButton,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 1.5),
+          child: Icon(icon, color: UiColor().primary, size: iconSize),
+        ),
       ),
     );
   }
