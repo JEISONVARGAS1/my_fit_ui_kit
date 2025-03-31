@@ -226,13 +226,10 @@ class _SimpleButton extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(30),
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: MediaQuery.of(context).size.height * 0.01,
-            horizontal: MediaQuery.of(context).size.width * 0.02,
-          ),
+        child: Center(
           child: Text(
             label,
+            textAlign: TextAlign.center,
             style: MyFitUiKit.util.textStyle.text.copyWith(
               color: isSelected
                   ? MyFitUiKit.util.color.backgroundButton

@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c838517-9f0c-4eb7-8a4b-990743e72bae" name="Changes" comment="init project">
-      <change beforePath="$PROJECT_DIR$/.idea/my_fit_ui_kit.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/my_fit_ui_kit.iml" afterDir="false" />
+    <list default="true" id="1c838517-9f0c-4eb7-8a4b-990743e72bae" name="Changes" comment="implemented simple button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widgets/button_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/button_widget.dart" afterDir="false" />
     </list>
@@ -419,7 +418,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743355716458</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="implemented simple button">
+      <option name="closed" value="true" />
+      <created>1743394871531</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1743394871531</updated>
+    </task>
+    <task id="LOCAL-00043" summary="implemented simple button">
+      <option name="closed" value="true" />
+      <created>1743394981328</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1743394981328</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -430,6 +445,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init project" />
-    <option name="LAST_COMMIT_MESSAGE" value="init project" />
+    <MESSAGE value="implemented simple button" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented simple button" />
   </component>
 </project>
