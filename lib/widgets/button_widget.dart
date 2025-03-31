@@ -13,6 +13,17 @@ class UiButton {
   Widget goBackButton({required Function() onTap, bool isDark = false}) =>
       _GoBackButton(onTap, isDark);
 
+  Widget simpleButton({
+    required String label,
+    required bool isSelected,
+    required Function() onTap,
+  }) =>
+      _SimpleButton(
+        onTap: onTap,
+        label: label,
+        isSelected: isSelected,
+      );
+
   Widget smallButton({
     required String label,
     required IconData icon,
@@ -194,13 +205,12 @@ class _DisableButton extends StatelessWidget {
   }
 }
 
-class MuscleItem extends StatelessWidget {
+class _SimpleButton extends StatelessWidget {
   final String label;
   final bool isSelected;
   final Function() onTap;
 
-  const MuscleItem({
-    super.key,
+  const _SimpleButton({
     required this.onTap,
     required this.label,
     required this.isSelected,
