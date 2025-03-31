@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_fit_ui_kit/my_fit_ui_kit.dart';
 import 'package:my_fit_ui_kit/utils/ui_color.dart';
 import 'package:my_fit_ui_kit/utils/text_style.dart';
 import 'package:my_fit_ui_kit/models/button_model.dart';
@@ -186,6 +187,47 @@ class _DisableButton extends StatelessWidget {
             style: FitTextStyle().text.copyWith(
                   color: UiColor().backgroundButton,
                 ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MuscleItem extends StatelessWidget {
+  final String label;
+  final bool isSelected;
+  final Function() onTap;
+
+  const MuscleItem({
+    super.key,
+    required this.onTap,
+    required this.label,
+    required this.isSelected,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: isSelected
+          ? MyFitUiKit.util.color.primary
+          : MyFitUiKit.util.color.card,
+      borderRadius: BorderRadius.circular(30),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(30),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height * 0.01,
+            horizontal: MediaQuery.of(context).size.width * 0.02,
+          ),
+          child: Text(
+            label,
+            style: MyFitUiKit.util.textStyle.text.copyWith(
+              color: isSelected
+                  ? MyFitUiKit.util.color.backgroundButton
+                  : MyFitUiKit.util.color.textColor,
+            ),
           ),
         ),
       ),
