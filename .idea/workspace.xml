@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1c838517-9f0c-4eb7-8a4b-990743e72bae" name="Changes" comment="implemented simple button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/button_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/button_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/card_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/card_widget.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -434,7 +434,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743394981328</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="implemented simple button">
+      <option name="closed" value="true" />
+      <created>1743397384093</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1743397384093</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="ToolWindowManager">

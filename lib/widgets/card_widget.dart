@@ -25,8 +25,12 @@ class UiCard {
         descriptionStyle: descriptionStyle,
       );
 
-  Widget detailCard({required String label, required String value}) =>
-      _DetailCard(label: label, value: value);
+  Widget detailCard({
+    TextStyle? style,
+    required String label,
+    required String value,
+  }) =>
+      _DetailCard(label: label, value: value, style: style);
 
   Widget productCard({
     required String label,
@@ -137,8 +141,9 @@ class _CardWidget extends StatelessWidget {
 class _DetailCard extends StatelessWidget {
   final String label;
   final String value;
+  final TextStyle? style;
 
-  const _DetailCard({required this.value, required this.label});
+  const _DetailCard({required this.value, required this.label, this.style});
 
   @override
   Widget build(BuildContext context) {
@@ -151,8 +156,8 @@ class _DetailCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: FitTextStyle().title),
-          Text(value, style: FitTextStyle().title),
+          Text(label, style: style ?? FitTextStyle().title),
+          Text(value, style: style ?? FitTextStyle().title),
         ],
       ),
     );
