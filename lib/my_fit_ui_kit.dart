@@ -3,6 +3,7 @@
 
 
 export 'package:my_fit_ui_kit/models/card_type.dart';
+export 'package:my_fit_ui_kit/extension/cafe_text_style_extension.dart';
 
 //abstract class
 import 'package:my_fit_ui_kit/models/index.dart';
