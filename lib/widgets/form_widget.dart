@@ -314,7 +314,6 @@ class __PasswordInputState extends State<_PasswordInput> {
 
 class _DropdownWritableInput extends StatefulWidget {
   const _DropdownWritableInput({
-    super.key,
     this.validator,
     this.initialValue,
     this.fontSize = 16,
