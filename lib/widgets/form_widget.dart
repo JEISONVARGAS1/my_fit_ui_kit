@@ -471,7 +471,11 @@ class _DropdownWritableInputState extends State<_DropdownWritableInput> {
                   child: Chip(
                     label: Text(
                       widget.selectedValues[index],
-                      style: TextStyle(fontSize: widget.fontSize),
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: UiColor().textColor,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     onDeleted: () {
                       widget.selectedValues.remove(
