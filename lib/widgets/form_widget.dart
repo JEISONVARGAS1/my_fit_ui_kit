@@ -1,5 +1,7 @@
+import 'package:drop_down_search_field/drop_down_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_fit_ui_kit/extension/input_types.dart';
 import 'package:my_fit_ui_kit/utils/text_style.dart';
 import 'package:my_fit_ui_kit/utils/ui_color.dart';
 
@@ -25,21 +27,39 @@ class UiForm {
         inputFormatters: inputFormatters,
       );
 
-  Widget dropDownInput<T>({
+  Widget dropdownWritableInput({
+    double? fontSize,
+    bool enabled = true,
+    String? initialValue,
     required String label,
-    required List<T> listElement,
-    required Function(String) onChange,
-    required TextEditingController controller,
-    String? Function(String? text)? validator,
-    required Widget Function(BuildContext, T) dropDownBuild,
+    bool isPassword = false,
+    required String hintText,
+    EdgeInsets? contentPadding,
+    String addNewItemTitle = "",
+    required List<String> items,
+    void Function(String)? onChanged,
+    List<String> selectedValues = const [],
+    final String? Function(String?)? validator,
+    required Function(String) onSuggestionSelected,
+    Function(List<String>)? onSelectedValuesChanged,
+    required TextEditingController dropdownSearchFieldController,
+    DropdownWritableInputType type = DropdownWritableInputType.SINGLE,
   }) =>
-      _DropDownInput<T>(
+      _DropdownWritableInput(
+        type: type,
         label: label,
-        onChange: onChange,
-        validate: validator,
-        controller: controller,
-        listElement: listElement,
-        dropDownBuild: dropDownBuild,
+        items: items,
+        enabled: enabled,
+        fontSize: fontSize,
+        hintText: hintText,
+        validator: validator,
+        initialValue: initialValue,
+        contentPadding: contentPadding,
+        selectedValues: selectedValues,
+        addNewItemTitle: addNewItemTitle,
+        onSuggestionSelected: onSuggestionSelected,
+        onSelectedValuesChanged: onSelectedValuesChanged,
+        dropdownSearchFieldController: dropdownSearchFieldController,
       );
 
   Widget passwordInput({
@@ -292,76 +312,183 @@ class __PasswordInputState extends State<_PasswordInput> {
 //**********************************************
 //**********************************************
 
-class _DropDownInput<T> extends StatelessWidget {
-  final String label;
-  final List<T> listElement;
-  final Function(String) onChange;
-  final TextEditingController controller;
-  final String? Function(String? text)? validate;
-  final Widget Function(BuildContext, T) dropDownBuild;
-
-  const _DropDownInput({
+class _DropdownWritableInput extends StatefulWidget {
+  const _DropdownWritableInput({
     super.key,
+    this.validator,
+    this.initialValue,
+    this.fontSize = 16,
+    required this.items,
+    this.enabled = true,
+    this.contentPadding,
     required this.label,
-    required this.onChange,
-    required this.validate,
-    required this.controller,
-    required this.listElement,
-    required this.dropDownBuild,
+    required this.hintText,
+    this.addNewItemTitle = "",
+    this.onSelectedValuesChanged,
+    this.selectedValues = const [],
+    required this.onSuggestionSelected,
+    required this.dropdownSearchFieldController,
+    this.type = DropdownWritableInputType.SINGLE,
   });
+
+  final String label;
+  final bool enabled;
+  final String hintText;
+  final double? fontSize;
+  final List<String> items;
+  final String? initialValue;
+  final String addNewItemTitle;
+  final List<String> selectedValues;
+  final DropdownWritableInputType type;
+  final EdgeInsetsGeometry? contentPadding;
+  final String? Function(String?)? validator;
+  final void Function(String) onSuggestionSelected;
+  final Function(List<String>)? onSelectedValuesChanged;
+  final TextEditingController dropdownSearchFieldController;
+
+  @override
+  State<_DropdownWritableInput> createState() => _DropdownWritableInputState();
+}
+
+class _DropdownWritableInputState extends State<_DropdownWritableInput> {
+  SuggestionsBoxController suggestionBoxController = SuggestionsBoxController();
+
+  List<String> getSuggestions(String query) {
+    List<String> matches = <String>[];
+    matches.addAll(widget.items);
+
+    matches.retainWhere((s) => s.toLowerCase().contains(query.toLowerCase()));
+
+    if (widget.addNewItemTitle.isNotEmpty) {
+      matches.add(widget.addNewItemTitle);
+    }
+    return matches;
+  }
+
+  @override
+  void initState() {
+    if (widget.initialValue != null) {
+      widget.dropdownSearchFieldController.text = widget.initialValue!;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextFormField(
-          validator: validate,
-          onChanged: onChange,
-          controller: controller,
-          style: TextStyle(
-            fontSize: 14,
-            color: UiColor().textColor,
-            fontWeight: FontWeight.w500,
-          ),
-          decoration: InputDecoration(
-            labelText: label,
-            labelStyle: TextStyle(
+        DropDownSearchFormField(
+          enabled: widget.enabled,
+          textFieldConfiguration: TextFieldConfiguration(
+            enabled: widget.enabled,
+            style: TextStyle(
               fontSize: 14,
               color: UiColor().textColor,
               fontWeight: FontWeight.w500,
             ),
+            decoration: InputDecoration(
+              labelText: widget.label,
+              hintText: widget.hintText,
+              contentPadding: widget.contentPadding ??
+                  EdgeInsets.only(
+                      top: 18, bottom: 22, left: 19.21, right: 19.21),
+              hintStyle: TextStyle(
+                fontSize: 14,
+                color: UiColor().textColor,
+                fontWeight: FontWeight.w500,
+              ),
+              labelStyle: TextStyle(
+                fontSize: 14,
+                color: UiColor().textColor,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            controller: widget.dropdownSearchFieldController,
           ),
+          suggestionsCallback: (pattern) => getSuggestions(pattern),
+          itemBuilder: (context, String suggestion) {
+            if (widget.addNewItemTitle.isNotEmpty &&
+                suggestion == widget.addNewItemTitle) {
+              return ListTile(
+                title: Text(
+                  suggestion,
+                  textAlign: TextAlign.center,
+                ),
+                titleAlignment: ListTileTitleAlignment.center,
+              );
+            }
+
+            return ListTile(title: Text(suggestion));
+          },
+          itemSeparatorBuilder: (context, index) => Divider(),
+          transitionBuilder: (context, suggestionsBox, controller) {
+            return suggestionsBox;
+          },
+          onSuggestionSelected: (String suggestion) {
+            if (widget.type == DropdownWritableInputType.MULTI) {
+              if (widget.selectedValues.contains(suggestion)) {
+                widget.selectedValues.remove(suggestion);
+              } else {
+                widget.selectedValues.add(suggestion);
+              }
+
+              setState(() {});
+              if (widget.onSelectedValuesChanged != null) {
+                widget.onSelectedValuesChanged!(widget.selectedValues);
+              }
+              widget.onSuggestionSelected(suggestion);
+            } else {
+              if (widget.addNewItemTitle != suggestion) {
+                widget.dropdownSearchFieldController.text = suggestion;
+                widget.onSuggestionSelected(suggestion);
+              } else {
+                widget.dropdownSearchFieldController.text = "";
+                widget.onSuggestionSelected(suggestion);
+              }
+            }
+          },
+          suggestionsBoxController: suggestionBoxController,
+          validator: widget.validator ??
+              (value) {
+                if (value!.isEmpty &&
+                    widget.type == DropdownWritableInputType.SINGLE) {
+                  return 'Please select a value';
+                } else {
+                  return null;
+                }
+              },
+          onSaved: (value) => widget.selectedValues.add(value!),
+          displayAllSuggestionWhenTap: widget.enabled,
         ),
-        AnimatedContainer(
-          alignment: Alignment.center,
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: UiColor().backgroundButton),
+        if (widget.selectedValues.isNotEmpty)
+          Wrap(
+            spacing: 5.0,
+            children: List<Widget>.generate(
+              widget.selectedValues.length,
+              (int index) {
+                return Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Chip(
+                    label: Text(
+                      widget.selectedValues[index],
+                      style: TextStyle(fontSize: widget.fontSize),
+                    ),
+                    onDeleted: () {
+                      widget.selectedValues.remove(
+                        widget.selectedValues[index],
+                      );
+                      setState(() {});
+                      if (widget.onSelectedValuesChanged != null) {
+                        widget.onSelectedValuesChanged!(widget.selectedValues);
+                      }
+                    },
+                  ),
+                );
+              },
+            ).toList(),
           ),
-          height: generateHeightSize(context, listElement.length),
-          child: ListView(
-            padding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).size.height * 0.01,
-              horizontal: MediaQuery.of(context).size.width * 0.06,
-            ),
-            children: List.generate(
-              listElement.length,
-              (index) => dropDownBuild(context, listElement[index]),
-            ),
-          ),
-        )
       ],
     );
-  }
-
-  double generateHeightSize(BuildContext context, int lengthList) {
-    if (lengthList >= 1 && lengthList < 3)
-      return MediaQuery.of(context).size.height * 0.1;
-    if (lengthList >= 3 && lengthList < 5)
-      return MediaQuery.of(context).size.height * 0.15;
-    if (lengthList >= 5 && lengthList < 10)
-      return MediaQuery.of(context).size.height * 0.2;
-    return 0;
   }
 }

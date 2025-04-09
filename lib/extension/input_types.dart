@@ -1,0 +1,1 @@
+enum DropdownWritableInputType { MULTI, SINGLE }
