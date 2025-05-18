@@ -32,6 +32,15 @@ class FitTextStyle{
     );
   }
 
+
+  TextStyle get textL {
+    return _baseTextStyle.copyWith(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        fontFamily: FontFamilyType.bebas_neue.name
+    );
+  }
+
   TextStyle get text {
     return _baseTextStyle.copyWith(
         fontSize: 14,

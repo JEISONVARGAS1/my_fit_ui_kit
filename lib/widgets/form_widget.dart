@@ -1,14 +1,16 @@
-import 'package:drop_down_search_field/drop_down_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_fit_ui_kit/extension/input_types.dart';
-import 'package:my_fit_ui_kit/utils/text_style.dart';
+import 'package:my_fit_ui_kit/my_fit_ui_kit.dart';
 import 'package:my_fit_ui_kit/utils/ui_color.dart';
+import 'package:my_fit_ui_kit/utils/text_style.dart';
+import 'package:my_fit_ui_kit/extension/input_types.dart';
+import 'package:drop_down_search_field/drop_down_search_field.dart';
 
 class UiForm {
   Widget input({
     int? maxLine,
     int? maxLength,
+    bool readOnly = false,
     required String label,
     Function(String)? onChange,
     TextInputType? keyboardType,
@@ -20,6 +22,7 @@ class UiForm {
         label: label,
         maxLine: maxLine,
         onChange: onChange,
+        readOnly: readOnly,
         maxLength: maxLength,
         validator: validator,
         controller: controller,
@@ -91,6 +94,7 @@ class _Input extends StatelessWidget {
   final int? maxLine;
   final String label;
   final int? maxLength;
+  final bool readOnly;
   final Function(String)? onChange;
   final TextInputType? keyboardType;
   final TextEditingController controller;
@@ -105,6 +109,7 @@ class _Input extends StatelessWidget {
     this.keyboardType,
     required this.label,
     this.inputFormatters,
+    this.readOnly = false,
     required this.controller,
   });
 
@@ -112,6 +117,7 @@ class _Input extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       maxLines: maxLine,
+      readOnly: readOnly,
       onChanged: onChange,
       maxLength: maxLength,
       validator: validator,
@@ -413,12 +419,22 @@ class _DropdownWritableInputState extends State<_DropdownWritableInput> {
                 title: Text(
                   suggestion,
                   textAlign: TextAlign.center,
+                  style: MyFitUiKit.util.textStyle.description.copyWith(
+                    color: MyFitUiKit.util.color.textColor,
+                  ),
                 ),
                 titleAlignment: ListTileTitleAlignment.center,
               );
             }
 
-            return ListTile(title: Text(suggestion));
+            return ListTile(
+              title: Text(
+                suggestion,
+                style: MyFitUiKit.util.textStyle.description.copyWith(
+                  color: MyFitUiKit.util.color.textColor,
+                ),
+              ),
+            );
           },
           itemSeparatorBuilder: (context, index) => Divider(),
           transitionBuilder: (context, suggestionsBox, controller) {
@@ -473,7 +489,6 @@ class _DropdownWritableInputState extends State<_DropdownWritableInput> {
                       widget.selectedValues[index],
                       style: TextStyle(
                         fontSize: 14,
-                        color: UiColor().textColor,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

@@ -156,8 +156,8 @@ class _DetailCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: style ?? FitTextStyle().title),
-          Text(value, style: style ?? FitTextStyle().title),
+          Flexible(child: Text(label, style: style ?? FitTextStyle().title)),
+          Flexible(child: Text(value, style: style ?? FitTextStyle().title)),
         ],
       ),
     );
