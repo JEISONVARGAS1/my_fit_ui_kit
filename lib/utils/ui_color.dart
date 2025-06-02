@@ -5,6 +5,7 @@ class UiColor {
   Color menu = const Color(0xFF131313);
   Color white = const Color(0xFFFFFFFF);
   Color delete = const Color(0xFFE53935);
+  Color orange = const Color(0xFFF57C00);
   Color primary = const Color(0xFFB5EF3B);
   Color cardDark = const Color(0xFF252323);
   Color backgroundButton = const Color(0xFF000000);

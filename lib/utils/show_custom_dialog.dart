@@ -6,6 +6,7 @@ class ShowCustomDialog {
     BuildContext context, {
     required String title,
     required String description,
+    Widget? icon,
     Widget? body,
   }) async {
     return showDialog(
@@ -15,6 +16,11 @@ class ShowCustomDialog {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              icon != null
+                  ? Column(
+                      children: [const SizedBox(height: 20), icon],
+                    )
+                  : Container(),
               Text(
                 title,
                 textAlign: TextAlign.center,
