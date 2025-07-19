@@ -10,6 +10,7 @@ class UiForm {
   Widget input({
     int? maxLine,
     int? maxLength,
+    Function()? onTap,
     bool readOnly = false,
     required String label,
     Function(String)? onChange,
@@ -20,6 +21,7 @@ class UiForm {
   }) =>
       _Input(
         label: label,
+        onTap: onTap,
         maxLine: maxLine,
         onChange: onChange,
         readOnly: readOnly,
@@ -95,6 +97,7 @@ class _Input extends StatelessWidget {
   final String label;
   final int? maxLength;
   final bool readOnly;
+  final Function()? onTap;
   final Function(String)? onChange;
   final TextInputType? keyboardType;
   final TextEditingController controller;
@@ -102,6 +105,7 @@ class _Input extends StatelessWidget {
   final String? Function(String? text)? validator;
 
   const _Input({
+    this.onTap,
     this.maxLine,
     this.onChange,
     this.validator,
@@ -116,6 +120,7 @@ class _Input extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: onTap,
       maxLines: maxLine,
       readOnly: readOnly,
       onChanged: onChange,
